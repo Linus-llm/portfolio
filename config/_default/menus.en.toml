@@ -13,7 +13,7 @@
 #[[main]]
 #  name = "Blog"
 #  pageRef = "posts"
-#  weight = 10
+#  weight = 20
 
 #[[main]]
 #  name = "Parent"
