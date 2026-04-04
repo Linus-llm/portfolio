@@ -15,3 +15,5 @@ The DAO's have a shared interface which as of now holds the CRUD methods.
 The shared getAll methods withing the DAO interface is where I utilize JPQL.
 
 Besides the DAO's and entities I have created a single unit test. 
+
+First JPA relationships have been created
