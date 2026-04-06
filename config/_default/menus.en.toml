@@ -17,7 +17,7 @@
 
 [[main]]
   name = "Exam Portfolio"
-  pageRef = "Portfolio"
+  pageRef = "Exam Portfolio"
   weight = 20
 #[[main]]
 #  name = "Parent"
