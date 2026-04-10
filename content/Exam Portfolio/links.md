@@ -5,5 +5,13 @@ title = 'Links'
 +++
 
 Github code repository link:
+https://github.com/Linus-llm/CollectionApp
 
-Video link:
+Deployed application: 
+https://collectionapp.viskode.dk/
+
+Video link (original):
+https://youtu.be/UKMt0CBDMnY
+
+Updated video:
+https://youtu.be/VBFetYs8JJo
