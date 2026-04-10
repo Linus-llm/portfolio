@@ -4,7 +4,7 @@ draft = false
 title = 'week 07 log'
 +++
 
-In the sixth week of the project:
+In the seventh week of the project:
 
 Security layer has been added. I have added a security layer and put it in a package. 
 The package contains:
