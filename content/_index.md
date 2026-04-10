@@ -4,9 +4,10 @@ draft = false
 title = 'Home'
 +++
 
+# About me
 
-# Linus
+Hi, my name is Linus and this is my portfolio website.
 
-I am a software development student focusing on backend development with Java.
+Currently I am a software development student focusing on backend development with Java.
 
 This portfolio contains my projects, development logs, and reflections from my education.
