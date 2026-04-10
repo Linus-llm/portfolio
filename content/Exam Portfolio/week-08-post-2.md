@@ -30,6 +30,8 @@ I fixed a small logic error in my UserController where I checked for ownership b
 
 I have refactored the way exceptions are handled in my project by adding a global exception handler in my Main class to the Javalin app instance. That means that the exceptions will bubble up and eventually be caught there, and the handlers will return my ApiResponseDTO with a status code and a message.
 
+I have removed my RetrieveDAO since it has not been used once in my project and I don't see the need for it. I have now added the custom item creation endpoint so that custom items can be created.
+
 Thoughts and reflections:
 
 My endpoints have been set up wrong, or not wrong, there just isn't the security layer that I wish was there on them yet. Because as of now, everybody can see anyone's items and collections, which I intend to fix. This has been fixed now.
