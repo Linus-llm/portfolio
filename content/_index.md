@@ -4,9 +4,6 @@ draft = false
 title = 'Home'
 +++
 
----
-title: "Home"
----
 
 # Linus
 
