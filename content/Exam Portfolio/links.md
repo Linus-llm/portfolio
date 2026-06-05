@@ -7,11 +7,17 @@ title = 'Links'
 Github code repository link:
 https://github.com/Linus-llm/CollectionApp
 
-Deployed application: 
+Deployed backend application: 
 https://collectionapp.viskode.dk/
 
-Video link (original):
+Deployed frontend application:
+https://collector.viskode.dk/
+
+Video link (original) backend:
 https://youtu.be/UKMt0CBDMnY
 
-Updated video:
+Updated video backend:
 https://youtu.be/VBFetYs8JJo
+
+Video link frontend:
+
