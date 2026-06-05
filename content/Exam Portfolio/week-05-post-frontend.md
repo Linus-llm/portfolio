@@ -1,3 +1,4 @@
++++
 date = '2026-06-04T17:06:24+01:00'
 draft = false
 title = 'Week 05+ post frontend'
