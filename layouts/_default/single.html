@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <article class="article shell">
+    <header class="article-header">
+      <a class="back-link system-label" href="{{ .Parent.RelPermalink }}">← Development log</a>
+      <p class="eyebrow">{{ if in .File.BaseFileName "frontend" }}Frontend development{{ else }}Backend development{{ end }}</p>
+      <h1>{{ .Title }}</h1>
+      <div class="article-meta system-label"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 January 2006" }}</time><span>{{ .ReadingTime }} min read</span></div>
+    </header>
+    <div class="prose">{{ .Content }}</div>
+  </article>
+{{ end }}
+
