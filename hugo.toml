@@ -1,3 +1,7 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://linus-llm.github.io/portfolio/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Linus — Software Development Portfolio'
+
+[params]
+description = 'Backend and frontend development logs by Linus.'
+
