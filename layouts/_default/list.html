@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <header class="page-intro shell">
+    <p class="eyebrow">Collection App / Exam portfolio</p>
+    <h1>Development<br>log.</h1>
+    <p>A chronological record of the backend and frontend work: architecture, implementation, testing, deployment, and reflection.</p>
+  </header>
+  <section class="log shell">
+    <div class="log-key system-label"><span>Index</span><span>Discipline</span><span>Entry</span><span>Date</span></div>
+    {{ range .RegularPages.ByDate }}
+      {{ if ne .File.BaseFileName "links" }}
+        {{ $isFrontend := in .File.BaseFileName "frontend" }}
+        <a class="log-row" href="{{ .RelPermalink }}">
+          <span class="log-index">{{ printf "%02d" .Date.Month }}.{{ printf "%02d" .Date.Day }}</span>
+          <span class="log-discipline">{{ if $isFrontend }}Frontend{{ else }}Backend{{ end }}</span>
+          <span class="log-title">{{ .Title }}</span>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
+        </a>
+      {{ end }}
+    {{ end }}
+  </section>
+  {{ with .GetPage "links" }}
+    <section class="resources shell"><p class="section-number">Project resources</p><h2>Code, deployments<br>& demonstrations.</h2><div class="resource-content">{{ .Content }}</div></section>
+  {{ end }}
+{{ end }}
+
