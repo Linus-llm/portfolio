@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <header class="page-intro shell">
+    <p class="eyebrow">Project / Development log</p>
+    <h1>{{ .Title }}.</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ else }}{{ with .Content }}<div class="project-description">{{ . }}</div>{{ end }}{{ end }}
+  </header>
+  <section class="log shell">
+    <div class="log-key system-label"><span>Index</span><span>Type</span><span>Entry</span><span>Date</span></div>
+    {{ range .RegularPages.ByDate }}
+      <a class="log-row" href="{{ .RelPermalink }}"><span class="log-index">{{ .Date.Format "01.02" }}</span><span class="log-discipline">Log</span><span class="log-title">{{ .Title }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time></a>
+    {{ end }}
+  </section>
+{{ end }}
+

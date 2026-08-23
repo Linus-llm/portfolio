@@ -68,6 +68,19 @@ a { color: inherit; }
 .resource-content p { break-inside: avoid; margin: 0 0 1.5rem; }
 .resource-content a { text-underline-offset: .25em; overflow-wrap: anywhere; }
 
+.project-intro { min-height: 500px; }
+.projects { padding-block: 6rem 10rem; }
+.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 2rem; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.project-card { min-height: 520px; display: flex; flex-direction: column; justify-content: space-between; padding: 1.8rem; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); text-decoration: none; transition: color .2s ease, background .2s ease; }
+.project-card-featured { grid-row: span 2; min-height: 720px; }
+.project-card:not(.project-card-empty):hover { color: var(--paper); background: var(--ink); }
+.project-card-top, .project-card-meta { display: flex; justify-content: space-between; gap: 1rem; }
+.project-card h2 { max-width: 9ch; margin: 3rem 0 1.5rem; font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 500; line-height: .75; letter-spacing: -.03em; text-transform: uppercase; }
+.project-card:not(.project-card-featured) h2 { font-size: clamp(3rem, 5vw, 5rem); }
+.project-card p { max-width: 500px; font-size: 1.25rem; }
+.project-card-empty { color: var(--muted); background: repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(10,10,10,.035) 12px, rgba(10,10,10,.035) 13px); }
+.project-description { width: min(540px, 100%); margin: 3rem 0 0 auto; font-size: 1.4rem; }
+
 .article { max-width: 1180px; padding-block: 7rem 10rem; }
 .article-header { padding-bottom: 5rem; border-bottom: 1px solid var(--ink); }
 .back-link { display: inline-block; margin-bottom: 7rem; text-decoration: none; }
@@ -109,6 +122,9 @@ a { color: inherit; }
   .log-row time { grid-column: 1; grid-row: 1; font-size: 0; }
   .log-row time::after { content: attr(datetime); font-size: .62rem; }
   .resource-content { columns: 1; }
+  .projects { padding-block: 4rem 7rem; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-card, .project-card-featured { min-height: 460px; grid-row: auto; }
   .article { padding-block: 4rem 7rem; }
   .back-link { margin-bottom: 5rem; }
   .prose { margin-top: 4rem; font-size: 1.12rem; }

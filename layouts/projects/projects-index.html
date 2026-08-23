@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <header class="page-intro project-intro shell">
+    <p class="eyebrow">Work / Process / Reflection</p>
+    <h1>Projects.</h1>
+    <p>Choose a project to explore its development log, technical decisions, problems, and progress.</p>
+  </header>
+  <section class="projects shell">
+    <p class="section-number">Active projects / {{ add 1 (len .Sections) }}</p>
+    <div class="project-grid">
+      {{ with site.GetPage "/exam-portfolio" }}
+        <a class="project-card project-card-featured" href="{{ .RelPermalink }}">
+          <div class="project-card-top system-label"><span>01</span><span>Full stack</span></div>
+          <div><h2>Collection<br>App</h2><p>A collection-tracking application documented from backend architecture and API design through React implementation and deployment.</p></div>
+          <div class="project-card-meta system-label"><span>{{ sub (len .RegularPages) 1 }} log entries</span><span>Java / React</span><span>↗</span></div>
+        </a>
+      {{ end }}
+      {{ range $index, $project := .Sections.ByTitle }}
+        <a class="project-card" href="{{ $project.RelPermalink }}">
+          <div class="project-card-top system-label"><span>{{ printf "%02d" (add $index 2) }}</span><span>Project</span></div>
+          <div><h2>{{ $project.Title }}</h2><p>{{ with $project.Description }}{{ . }}{{ else }}{{ $project.Summary | plainify }}{{ end }}</p></div>
+          <div class="project-card-meta system-label"><span>{{ len $project.RegularPages }} log entries</span><span>View project</span><span>↗</span></div>
+        </a>
+      {{ end }}
+      <div class="project-card project-card-empty">
+        <div class="project-card-top system-label"><span>Next</span><span>Available</span></div>
+        <div><h2>New<br>project</h2><p>Future project logs will appear here as separate, organized timelines.</p></div>
+        <div class="project-card-meta system-label"><span>Ready for a new log</span><span>＋</span></div>
+      </div>
+    </div>
+  </section>
+{{ end }}
+
