@@ -139,6 +139,29 @@ def update_document(dataset_id, document_id, name, text):
     return response.json()
 
 
+def delete_document(dataset_id, document_id):
+    url = (
+        f"{DIFY_BASE_URL}/datasets/"
+        f"{dataset_id}/documents/"
+        f"{document_id}"
+    )
+
+    response = requests.delete(
+        url,
+        headers=HEADERS,
+        timeout=30
+    )
+
+    if not response.ok:
+        print()
+        print("DIFY ERROR")
+        print(f"Status: {response.status_code}")
+        print(f"Response: {response.text}")
+        print()
+
+    response.raise_for_status()
+
+
 # --------------------------------------------------
 # Markdown
 # --------------------------------------------------
@@ -191,6 +214,24 @@ def read_markdown(file_path):
     return clean_markdown(text)
 
 
+def get_changed_files():
+    changed_file = Path("changed_files.txt")
+
+    if not changed_file.exists():
+        return []
+
+    changes = []
+
+    for line in changed_file.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+
+        status, file_path = line.split("\t", 1)
+
+        changes.append((status, Path(file_path)))
+
+    return changes
+
 # --------------------------------------------------
 # Synchronization
 # --------------------------------------------------
@@ -216,29 +257,68 @@ def sync():
     print(f"Found {len(dify_documents)} existing Dify documents.")
     print()
 
-    markdown_files = get_markdown_files()
+    changes = get_changed_files()
 
-    print(f"Found {len(markdown_files)} Markdown files.")
+    if not changes:
+        print("No changed Markdown files found.")
+        return
+
+    print(f"Found {len(changes)} changed Markdown files.")
     print()
 
     created = 0
     updated = 0
+    deleted = 0
     skipped = 0
 
-    for file_path in markdown_files:
+    for status, file_path in changes:
 
-        document_name = get_document_name(file_path)
-        text = read_markdown(file_path)
+        # Remove "content/" from the name used in Dify
+        document_name = file_path.relative_to(CONTENT_FOLDER).as_posix()
 
         print(f"Processing: {document_name}")
-
-        if not text:
-            print("  -> Skipped: document is empty")
-            skipped += 1
-            continue
+        print(f"Git status: {status}")
 
         existing_document = documents_by_name.get(document_name)
 
+        # ------------------------------------------
+        # DELETED
+        # ------------------------------------------
+
+        if status == "D":
+
+            if existing_document is None:
+                print("  -> Already missing from Dify")
+                skipped += 1
+                continue
+
+            print("  -> Deleting document")
+
+            delete_document(
+                dataset_id,
+                existing_document["id"]
+            )
+
+            deleted += 1
+            continue
+
+        # ------------------------------------------
+        # ADDED / MODIFIED
+        # ------------------------------------------
+
+        if not file_path.exists():
+            print("  -> File does not exist. Skipping.")
+            skipped += 1
+            continue
+
+        text = read_markdown(file_path)
+
+        if not text:
+            print("  -> Document is empty. Skipping.")
+            skipped += 1
+            continue
+
+        # New file OR document missing from Dify
         if existing_document is None:
 
             print("  -> Creating new document")
@@ -247,7 +327,6 @@ def sync():
                 dataset_id,
                 document_name,
                 text
-            
             )
 
             created += 1
@@ -261,7 +340,6 @@ def sync():
                 existing_document["id"],
                 document_name,
                 text
-            
             )
 
             updated += 1
@@ -272,6 +350,7 @@ def sync():
     print("--------------------------------")
     print(f"Created: {created}")
     print(f"Updated: {updated}")
+    print(f"Deleted: {deleted}")
     print(f"Skipped: {skipped}")
 
 

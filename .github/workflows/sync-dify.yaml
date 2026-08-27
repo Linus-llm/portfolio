@@ -1,6 +1,12 @@
 name: Sync Markdown to Dify
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/**/*.md"
+
   workflow_dispatch:
 
 permissions:
@@ -13,6 +19,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Find changed Markdown files
+        if: github.event_name == 'push'
+        run: |
+          git diff --name-status \
+            "${{ github.event.before }}" \
+            "${{ github.sha }}" \
+            -- 'content/**/*.md' \
+            > changed_files.txt
+
+          echo "Changed Markdown files:"
+          cat changed_files.txt
 
       - name: Setup Python
         uses: actions/setup-python@v6
