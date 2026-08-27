@@ -50,3 +50,5 @@ det vil altså sige at, det her workflow starter når noget fra content mappen b
           cat changed_files.txt
 
 Hvilket finder differencen, altså kun de filer der er blevet ændret. Det gør at jeg ikke løber ind i et rate limit, som jeg gjorde før hvor at den sendte alle filer, hver gang workflowet kørte. 
+
+RAG'en har svært ved større spørgsmål som at opsummere henover flere dokumenter. Hvis jeg spørger den "The exam portfolio blog posts what reflections are in them?", så giver den mig et svagt svar fra de filer den nemmest lige kan finde frem tror jeg. Den kan godt give mig content fra specifikke md filer og skrive det ud til mig, så det er ikke et problem. Den citations den linker til er heller ikke akkurate overhovedet.
