@@ -93,6 +93,13 @@ def create_document(dataset_id, name, text):
         timeout=60
     )
 
+    if not response.ok:
+        print()
+        print("DIFY ERROR")
+        print(f"Status: {response.status_code}")
+        print(f"Response: {response.text}")
+        print()
+
     response.raise_for_status()
 
     return response.json()
@@ -119,6 +126,13 @@ def update_document(dataset_id, document_id, name, text):
         json=body,
         timeout=60
     )
+
+    if not response.ok:
+        print()
+        print("DIFY ERROR")
+        print(f"Status: {response.status_code}")
+        print(f"Response: {response.text}")
+        print()
 
     response.raise_for_status()
 
@@ -233,6 +247,7 @@ def sync():
                 dataset_id,
                 document_name,
                 text
+            
             )
 
             created += 1
@@ -246,6 +261,7 @@ def sync():
                 existing_document["id"],
                 document_name,
                 text
+            
             )
 
             updated += 1
