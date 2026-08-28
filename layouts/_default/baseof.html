@@ -1,10 +1,21 @@
 <!doctype html>
-<html lang="{{ site.Language.LanguageCode | default "en" }}">
+<html lang="{{ site.Language.LanguageCode | default "en" }}" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("portfolio-theme") === "dark") {
+            document.documentElement.dataset.theme = "dark";
+          }
+        } catch (_) {
+          // Keep the first-visit light default when storage is unavailable.
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,6 +28,10 @@
       <nav aria-label="Primary navigation">
         <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
         {{ with site.GetPage "/projects" }}<a href="{{ .RelPermalink }}"{{ if or (eq $.Section "projects") (eq $.Section "Exam Portfolio") }} aria-current="page"{{ end }}>Projects</a>{{ end }}
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+          <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+          <span class="theme-toggle-label">Dark</span>
+        </button>
       </nav>
     </header>
     <main id="main">{{ block "main" . }}{{ end }}</main>
@@ -37,6 +52,37 @@
     defer>
   </script>
 
+  <script>
+    (function () {
+      var storageKey = "portfolio-theme";
+      var root = document.documentElement;
+      var toggle = document.querySelector(".theme-toggle");
+
+      if (!toggle) return;
+
+      function updateToggle(theme) {
+        var isDark = theme === "dark";
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        toggle.querySelector(".theme-toggle-label").textContent = isDark ? "Light" : "Dark";
+      }
+
+      updateToggle(root.dataset.theme);
+
+      toggle.addEventListener("click", function () {
+        var nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = nextTheme;
+        updateToggle(nextTheme);
+
+        try {
+          localStorage.setItem(storageKey, nextTheme);
+        } catch (_) {
+          // The active page still changes theme when storage is unavailable.
+        }
+      });
+    })();
+  </script>
+
   <style>
     #dify-chatbot-bubble-button {
       background-color: #1C64F2 !important;
@@ -49,4 +95,3 @@
   </style>
   </body>
 </html>
-
