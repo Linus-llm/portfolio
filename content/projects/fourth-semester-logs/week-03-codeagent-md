@@ -1,0 +1,26 @@
++++
+date = '2026-08-30T17:06:24+01:00'
+draft = false
+title = 'Week 03 Codeagent'
++++
+
+Første arbejdstest med Codex via deres VS Code-extension var en dark mode-funktion. Vi blev bedt om at bruge planning-funktionen, der findes i Codex-agenten.
+I planning-funktionen forsøgte jeg at beskrive, hvad jeg gerne ville have i grove træk. Det vil altså sige, at jeg ikke beskrev præcist, hvordan dark mode-funktionen skulle se ud. Jeg beskrev, at den skulle invertere farverne på min portfolio-side. Derefter fik jeg nogle forskellige valgmuligheder:
+- Det første var, om dark mode-funktionen skulle identificere, om brugerens PC/OS havde dark mode slået til, og hvis det var tilfældet, skulle siden også automatisk bruge dark mode.
+- Det andet valg var, om funktionen blot skulle være en knap/toggle uden at kigge på brugerens indstillinger.
+- Det tredje var en kombination af de to: en knap/toggle, samtidig med at siden kunne se, om brugeren havde dark mode slået til gennem browserens eller operativsystemets indstillinger.
+Jeg valgte at gå med det andet valg for at holde det basic, men nu hvor jeg tænker tilbage på det, har det nok ikke den store betydning for kodeagenten, om jeg holder det basic på det her niveau. Jeg ved heller ikke, hvor svært det ville være for den at aflæse en indstilling fra brugerens OS eller browser.
+Jeg valgte altså det andet valg, hvorefter den gik i gang med at arbejde. Jeg har forbundet mit portfolio-repository på GitHub til Codex, så den har rettigheder til at pushe og lave ændringer. Jeg valgte at lave ændringerne direkte på min main-branch, hvilket ikke var det smarteste. Fremover kommer jeg derfor til at bede den om allerede i planning-fasen at lave ændringerne på en separat feature branch.
+Den fik løst opgaven, og jeg har efterfølgende tjekket, at funktionen virker på mit website.
+
+--------------------------------------------------------------------------
+Inden jeg begyndte at bruge planning-funktionen i Codex til den næste opgave, skrev jeg så detaljeret som muligt ned, hvad jeg gerne ville have lavet. Denne gang ville jeg lave en separat "About me"-side, så brugeren bliver mødt af mine blogs/projekter, før informationen omkring mig bliver vist.
+Jeg har allerede givet Codex adgang til mit GitHub-repository (portfolio), så denne gang skal den selv lave en ny branch at arbejde på. Jeg har flere ting, jeg gerne vil have lavet på mit portfolio-website, men jeg føler, at det er godt at arbejde med ændringerne i mindre bidder. Det rådede Jesper os også til, da man på den måde har mere kontrol over processen, og der er færre ting, der kan gå galt på én gang.
+Jeg kommer til at lave denne feature ved hjælp af Codex gennem VS Code-extensionen.
+Jeg gav Codex følgende beskrivelse:
+I want to refactor my homepage, so that the information about me will be on a different endpoint. I want it so that the users are met with a new welcome page that is generic and then they can scroll down to see the two project cards. I want my infopage to be on the upper menu bar as "About me". I want you to keep the styling on the page.
+I want the "About me" page to be styled like this:
+Name in somewhat big letters and then a description/text about me underneath. It should be centered on the page.
+I want you to do this in a separate branch.
+
+Efter jeg satte Codex til at arbejde, bad jeg den om ikke at merge ændringerne ind i main, før jeg selv havde gennemgået resultatet og givet den tilladelse til det. På den måde kan jeg først kontrollere, at ændringerne virker som forventet, inden de bliver en del af den version af portfolio-siden, der ligger på main.
