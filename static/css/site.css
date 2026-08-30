@@ -69,6 +69,18 @@ a { color: inherit; }
 .entry-card:hover { color: var(--paper); background: var(--ink); }
 .section-link { margin-top: 2.5rem; }
 
+.home-projects { padding-block: 10rem; }
+.home-projects .section-heading h2 { margin: 1.2rem 0 0; font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 500; line-height: .85; letter-spacing: -.025em; text-transform: uppercase; }
+.home-project-grid { margin-top: 0; }
+.home-project-grid .project-card { min-height: 560px; }
+
+.about { min-height: calc(100vh - 88px); display: grid; place-items: center; padding-block: 8rem; border-inline: 1px solid var(--line); }
+.about-content { width: min(820px, calc(100% - 3rem)); text-align: center; }
+.about-content h1 { margin: 0; font-size: clamp(5rem, 14vw, 11rem); font-weight: 600; line-height: .8; letter-spacing: -.035em; text-transform: uppercase; }
+.about-description { margin-top: 3.5rem; font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.35; }
+.about-description p { margin: 0 0 1.25rem; }
+.about-description p:last-child { margin-bottom: 0; }
+
 .page-intro { min-height: 560px; padding: 8rem 0 5rem; border-bottom: 1px solid var(--ink); }
 .page-intro h1 { font-size: clamp(5rem, 13vw, 11rem); }
 .page-intro > p:last-child { width: min(540px, 100%); margin: 3rem 0 0 auto; font-size: 1.4rem; }
@@ -127,7 +139,7 @@ a { color: inherit; }
   .hero-intro { margin-top: 2.5rem; }
   .hero-aside { display: none; }
   .manifest, .section-heading { grid-template-columns: 1fr; gap: 2rem; }
-  .manifest, .latest { padding-block: 6rem; }
+  .manifest, .latest, .home-projects { padding-block: 6rem; }
   .entry-grid { grid-template-columns: 1fr; }
   .page-intro { min-height: 480px; padding-top: 6rem; }
   .page-intro h1 { font-size: clamp(4.2rem, 20vw, 7rem); }
@@ -142,6 +154,10 @@ a { color: inherit; }
   .projects { padding-block: 4rem 7rem; }
   .project-grid { grid-template-columns: 1fr; }
   .project-card, .project-card-featured { min-height: 460px; grid-row: auto; }
+  .home-project-grid .project-card { min-height: 460px; }
+  .about { min-height: calc(100svh - 72px); padding-block: 6rem; }
+  .about-content { width: min(100% - 2rem, 820px); }
+  .about-description { margin-top: 2.5rem; }
   .article { padding-block: 4rem 7rem; }
   .back-link { margin-bottom: 5rem; }
   .prose { margin-top: 4rem; font-size: 1.12rem; }
